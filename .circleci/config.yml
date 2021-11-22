@@ -12,7 +12,8 @@ jobs:
              
       - run: |
              sudo apt-get update
-             sudo apt-get install rubocop         
+             sudo apt-get install rubocop      
+             gem install rubocop-rspec   
       - run: |
              gem install reek
       - run: |
