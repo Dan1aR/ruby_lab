@@ -20,5 +20,5 @@ jobs:
              sudo apt-get install libboost-all-dev
       - run: |
              ruby test.rb
-       - run: |
+      - run: |
              rubocop .
