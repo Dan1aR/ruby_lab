@@ -1,0 +1,24 @@
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202101-01
+     
+    steps:
+      - checkout       
+      - run: |
+             sudo apt-get update 
+             sudo apt-get install ruby 
+             
+      - run: |
+             sudo apt-get update
+             sudo apt-get install rubocop      
+             gem install rubocop-rspec   
+      - run: |
+             gem install reek
+      - run: |
+             sudo apt-get install libboost-all-dev
+      - run: |
+             ruby test.rb
+       - run: |
+             rubocop .
