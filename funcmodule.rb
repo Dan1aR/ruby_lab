@@ -30,18 +30,6 @@ def circle_area_advanced(rad, eps)
   e.find { |s1, s2| s2 - s1 < eps }.last
 end
 
-def maxim(f_x, g_x)
-  max_dist = 0.0
-  (0.5..1).step(0.01).each do |x|
-    max_dist = [max_dist, (f_x.call(x) - g_x.call(x)).abs].max
-  end
-  max_dist
-end
-
-def maxim_block
-  max_dist = 0.0
-  (0.5..1).step(0.01).each do |x|
-    max_dist = [max_dist, (yield x).abs].max
-  end
-  max_dist
+def maximb
+  yield if block_given?
 end

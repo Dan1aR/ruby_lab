@@ -12,14 +12,26 @@ puts "#{circle_out} :: #{circle_area(R, 10**-3)}"
 puts "#{circle_adv_out} :: #{circle_area_advanced(R, 10**-3)}"
 puts "#{circle_out} :: #{circle_area(R, 10**-4)}"
 puts "#{circle_adv_out} :: #{circle_area_advanced(R, 10**-4)}"
+puts
 
-f_x = ->(x) { Math.sin(x) / x }
-g_x = ->(x) { Math.tan(x + 1) / (x + 1) }
-
-dist_lambda_out = 'Max dist between F(x) and G(x) using lambda'
+dist_proc_out = 'Max dist between F(x) and G(x) using Proc'
 dist_block_out = 'Max dist between F(x) and G(x) using block'
 
-mx_block = (maxim_block { |x| Math.sin(x) / x - Math.tan(x + 1) / (x + 1) })
+mxl = maximb & proc {
+  max_dist = 0.0
+  (0.5..1).step(0.01).each do |x|
+    max_dist = [max_dist, (Math.sin(x) / x - Math.tan(x + 1) / (x + 1)).abs].max
+  end
+  max_dist
+}
 
-puts "#{dist_lambda_out} :: #{maxim(f_x, g_x)}"
-puts "#{dist_block_out} :: #{mx_block}"
+mxb = maximb do
+  max_dist = 0.0
+  (0.5..1).step(0.01).each do |x|
+    max_dist = [max_dist, (Math.sin(x) / x - Math.tan(x + 1) / (x + 1)).abs].max
+  end
+  max_dist
+end
+
+puts "#{dist_proc_out} :: #{mxl}"
+puts "#{dist_block_out} :: #{mxb}"
