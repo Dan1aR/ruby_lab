@@ -6,11 +6,8 @@ end
 
 def decrypt_str(str)
   str.force_encoding('UTF-8')
-  abc = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'.split('')
-  str
-    .split('')
-    .each
-    .map do |s_i|
+  abc = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+  str.each_char.map do |s_i|
       c = s_i.eql?(' ') ? ' ' : abc[(abc.index(s_i.downcase) + 1) % abc.length]
       /[[:upper:]]/.match(s_i) ? c.upcase : c
     end
