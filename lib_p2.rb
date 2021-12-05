@@ -27,19 +27,11 @@ class HospitalSick < Sick
     @last_ye = last_examination_year
   end
 
-  def last_examination_year
-    @last_ye
-  end
-
   def info
-    "#{super} #{last_examination_year}"
-  end
-
-  def print_info
-    puts info
+    "#{super} #{@last_ye}"
   end
 
   def next_examination_year
-    last_examination_year + 3
+    @last_ye + 3
   end
 end
