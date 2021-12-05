@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './funcmodule'
+require_relative 'funcmodule'
 
 puts('Enter x, y:')
 x, y = gets.split.map(&:to_f)
