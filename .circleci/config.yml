@@ -16,6 +16,7 @@ jobs:
              gem install rubocop-rspec   
       - run: |
              gem install reek
+             gem install faker
       - run: |
              sudo apt-get install libboost-all-dev
       - run: |
