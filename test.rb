@@ -34,13 +34,14 @@ class TestRobot < Minitest::Test
   end
 
   def test_proc
-    mxl = maximb & proc {
+    mxl = maximb(&proc {
       max_dist = 0.0
       (0.5..1).step(0.01).each do |x|
         max_dist = [max_dist, (Math.sin(x) / x - Math.tan(x + 1) / (x + 1)).abs].max
       end
       max_dist
-    }
+    })
+
     assert_in_delta(798.9039723309172, mxl, 10**-6)
   end
 

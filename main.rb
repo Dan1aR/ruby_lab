@@ -17,13 +17,13 @@ puts
 dist_proc_out = 'Max dist between F(x) and G(x) using Proc'
 dist_block_out = 'Max dist between F(x) and G(x) using block'
 
-mxl = maximb & proc {
+mxl = maximb(&proc {
   max_dist = 0.0
   (0.5..1).step(0.01).each do |x|
     max_dist = [max_dist, (Math.sin(x) / x - Math.tan(x + 1) / (x + 1)).abs].max
   end
   max_dist
-}
+})
 
 mxb = maximb do
   max_dist = 0.0
