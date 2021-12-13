@@ -1,0 +1,26 @@
+version: 2.1
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202101-01
+     
+    steps:
+      - checkout       
+      - run: |
+             sudo apt-get update 
+             sudo apt-get install ruby 
+             
+      - run: |
+             sudo apt-get update
+             sudo apt-get install rubocop      
+             gem install rubocop-rspec 
+             gem install rainbow  
+             bundle update ruby-progressbar
+      - run: |
+             bundle
+      - run: |
+             sudo apt-get install libboost-all-dev
+      - run: |
+             rails test
+      - run: |
+             rubocop .
