@@ -9,10 +9,14 @@ jobs:
       - run: |
              sudo apt-get update 
              sudo apt-get install ruby2.7
-             
+             ruby -v
       - run: |
              sudo apt-get update
-             sudo apt-get install rubocop      
+             sudo apt-get install rubocop   
+
+      - run: |  
+             gem install bundler
+             gem update bundler   
       - run: |  
              bundle update ruby-progressbar
       - run: |
