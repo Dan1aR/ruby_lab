@@ -13,8 +13,7 @@ jobs:
       - run: |
              sudo apt-get update
              sudo apt-get install rubocop      
-             gem install rubocop-rspec 
-             gem install rainbow  
+      - run: |  
              bundle update ruby-progressbar
       - run: |
              bundle
