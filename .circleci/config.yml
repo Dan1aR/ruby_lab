@@ -8,9 +8,7 @@ jobs:
       - checkout       
       - run: |
              sudo apt-get update 
-             curl -sSL https://get.rvm.io | bash -s stable
-             sudo apt-get install ruby2.7
-             rvm --default use 2.7
+             sudo apt-get install ruby
              ruby -v
       - run: |
              sudo apt-get update
