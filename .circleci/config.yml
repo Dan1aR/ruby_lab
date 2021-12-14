@@ -25,8 +25,9 @@ jobs:
             gem install bundler
       - run:
           name: Install and Tests
-          command: bundle check || bundle install
-          command: bundle exec rails test
+          command: |
+            bundle check || bundle install
+            bundle exec rails test
 
       - save_cache:
           key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
