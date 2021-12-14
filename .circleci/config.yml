@@ -22,7 +22,7 @@ jobs:
       - run: |
              bundle
       - run: |
-             sudo apt-get install libboost-all-dev
+             rails webpacker:install
       - run: |
              rails test
       - run: |
