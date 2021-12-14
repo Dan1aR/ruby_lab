@@ -24,8 +24,9 @@ jobs:
             source $BASH_ENV
             gem install bundler
       - run:
-          name: Bundle Install
+          name: Install and Tests
           command: bundle check || bundle install
+          command: bundle exec rails test
 
       - save_cache:
           key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
@@ -36,7 +37,4 @@ jobs:
       - run:
           name: Run rubocop in parallel
           command: bundle exec rubocop --parallel --config .rubocop.yml
-
-      - run:
-          name: Run tests
-          command: bundle exec rails test
+          
