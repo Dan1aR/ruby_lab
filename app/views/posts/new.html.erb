@@ -16,10 +16,10 @@
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center border-bottom">
           <div class="col-4 pt-1">
-                <h4 class="blog-header-logo text-dark" href="#"><%= t 'users.edit.settings' %></h4>
+                <h4 class="blog-header-logo text-dark" href="#"><%= t 'posts.new.create_post' %></h4>
             </div>
             <div class="col-4 text-center">
-              <a class="blog-header-logo text-dark" href=<%= root_path %>><%= t 'users.edit.to_home' %></a>
+              <a class="blog-header-logo text-dark" href=<%= root_path %>><%= t 'posts.new.to_home' %></a>
             </div>
 
         </div>
@@ -31,14 +31,21 @@
         <p id="notice"><%= notice %></p>
         <div class="row">
             <div class="col-5">
-                <%= form_for User.find(@user.id), :method => :PUT do |f| %>
+                <%= form_for @post do |f| %>
                     
                     <div class="form-group">
-                        <label for="exampleInputEmail1"><%= t 'users.edit.username' %></label>
-                        <%= f.text_field :username, :value => @user.username, :class=>"form-control" %>
+                        <label for="exampleInputEmail1"><%= t 'posts.new.title' %></label>
+                        <%= f.text_field :title, :class=>"form-control", :required => true %>
                     </div>
 
-                    <%= f.submit t 'users.edit.confirm', :class=>"btn btn-primary" %>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"><%= t 'posts.new.text' %></label>
+                        <%= f.text_area :text, :class=>"form-control", :required => true %>
+                    </div>
+
+                    <%= f.file_field :avatar, :class=>"form-control" %>
+
+                    <%= f.submit "Создать Пост", :class=>"btn btn-primary" %>
 
                 <% end %>
             </div>

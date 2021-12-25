@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Главная страница</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center border-bottom">
+          <div class="col-4 pt-1">
+                <h4 class="blog-header-logo text-dark" href="#"> <%= t 'posts.edit.edit_post' %> </h4>
+            </div>
+            <div class="col-4 text-center">
+              <a class="blog-header-logo text-dark" href=<%= root_path %>><%= t 'posts.edit.to_home' %></a>
+            </div>
+
+        </div>
+      </header>
+    </div>
+
+    <div class="container">
+        
+        <div class="row mx-auto mt-1">
+            <div class="col-5">
+                <%= form_for @post do |f| %>
+                    
+                    <div class="form-group mt-1">
+                        <label for="exampleInputEmail1"><%= t 'posts.edit.title' %></label>
+                        <%= f.text_field :title, :class=>"form-control", :required => true %>
+                    </div>
+
+                    <div class="form-group mt-1">
+                        <label for="exampleInputEmail1"><%= t 'posts.edit.text' %></label>
+                        <%= f.text_area :text, :class=>"form-control", :required => true %>
+                    </div>
+
+                    <div class="form-group mt-1">
+                        <%= f.file_field :avatar, :class=>"form-control" %>
+
+                        <%= f.submit t('posts.edit.save_result'), :class=>"btn btn-primary mt-1" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+
+        <div class="row mx-auto mt-">
+            <% if @post.avatar.attached? %> 
+                <%= link_to t('posts.edit.delete_img'), delete_image_attachment_post_url(@post.avatar.signed_id),
+                    method: :delete,
+                    data: { confirm: "t('posts.edit.sure')" } %>
+            <% end %>
+        </div>
+
+    
+        <div class="row mx-auto mt-1"> 
+            <%= button_to t('posts.edit.delete_post'), @post, 
+                method: :delete, 
+                :type=>"button", 
+                :class=>"btn btn-danger", 
+                data: { confirm: t('posts.edit.sure') } %>
+        </div>
+
+    </div>
+    
+</body>
+</html>

@@ -13,6 +13,8 @@ module Lr8New
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    config.i18n.available_locales = %i[en ru]
+    config.i18n.default_locale = :en
     # add this line to your config/application.rb:
     config.autoload_paths << Rails.root.join('lib')
 

@@ -30,12 +30,11 @@ class SessionController < ApplicationController
 
   def update
     user_here = current_user
-    p "/users/#{user_here.id}/edit"
     redirect_to "/users/#{user_here.id}/edit"
   end
 
   def logout
     sign_out
-    redirect_to session_login_path
+    redirect_to root_path
   end
 end

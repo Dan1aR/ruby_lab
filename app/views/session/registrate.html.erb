@@ -13,26 +13,38 @@
 <body>
 
     <div class="container">
+      <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center border-bottom">
+          
+            <div class="col-4 text-center">
+              <h4 class="blog-header-logo text-dark" href="#"><%= t 'session.registrate.hello' %></h4>
+            </div>
+
+        </div>
+      </header>
+    </div>
+
+    <div class="container">
         <div class="row">
             <div class="col-3">
                 <form action="<%= session_registrate_url %>">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Login</label>
+                    <div class="form-group mt-1">
+                        <label for="exampleInputEmail1"><%= t 'session.registrate.login' %></label>
                         <input name="login"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter login">
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
+                    <div class="form-group mt-1">
+                        <label for="exampleInputPassword1"><%= t 'session.registrate.password' %></label>
                         <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password Confirm</label>
+                    <div class="form-group mt-1">
+                        <label for="exampleInputPassword1"><%= t 'session.registrate.password_confirm' %></label>
                         <input name="password_confirm" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
-                    <p>
-                        <button type="submit" class="btn btn-primary">Registrate</button>
-                    </p>
+                    <div class="form-group mt-1">
+                        <button type="submit" class="btn btn-primary"><%= t 'session.registrate.reg' %></button>
+                    </div>
                     
                 </form>
             </div>
