@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 class SessionController < ApplicationController
   skip_before_action :require_login, only: %i[login create registrate]
 
-  def login
-  end
+  def login; end
 
   def registrate
-    if !params[:login].nil?
+    unless params[:login].nil?
       @user = User.find_by(username: params[:login])
       if @user.nil? && (params[:password] == params[:password_confirm])
         @user = User.new username: params[:login], password: params[:password]

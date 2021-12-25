@@ -21,6 +21,7 @@ en:
       to_home: "Home"
       title: "Title"
       text: "Text"
+      create_post: "Create Post"
     show:
       hello: "Sap Dvach!"
       logout: "Logout"

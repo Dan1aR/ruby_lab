@@ -1,11 +1,13 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class SessionControllerTest < ActionDispatch::IntegrationTest
   include SessionHelper
-  
-  test 'unauthorized user will be redirected to login page' do
+
+  test 'unauthorized user can access to root page' do
     get root_url
-    assert_redirected_to controller: :session, action: :login
+    assert_response :success
   end
 
   test 'user with incorrect credentials will be redirected to login page' do
@@ -20,9 +22,8 @@ class SessionControllerTest < ActionDispatch::IntegrationTest
 
     get session_create_url, params: { login: user.username, password: password }
 
-    assert_redirected_to controller: :index, action: :input  
+    assert_redirected_to controller: :post, action: :index
   end
-
 
   test 'user can logout' do
     password = '123'
@@ -35,5 +36,4 @@ class SessionControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to controller: :session, action: :login
   end
-
 end

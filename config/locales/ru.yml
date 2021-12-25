@@ -21,6 +21,7 @@ ru:
       to_home: "На Главную"
       title: "Название"
       text: "Содержание"
+      create_post: "Создать Пост"
     show:
       hello: "Сап Двач!"
       logout: "Выйти"

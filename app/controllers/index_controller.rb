@@ -37,7 +37,7 @@ class IndexController < ApplicationController
     @error = find_res.result ? 'Некорректный ввод' : nil
     unless @error.nil?
       @result = JSON.parse(find_res.result)
-      @longest_one = JSON.parse(find_res.longest_one) if !find_res.longest_one.nil?
+      @longest_one = JSON.parse(find_res.longest_one) unless find_res.longest_one.nil?
     end
   end
 end
