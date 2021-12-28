@@ -38,7 +38,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
+      posts = Post.where(user_id: @user.username).order(:created_at).limit(100)
       if @user.update(user_params)
+        puts "!!!! HERE !!!"
+        posts.update_all(user_id: @user.username)
         format.html { redirect_to root_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else

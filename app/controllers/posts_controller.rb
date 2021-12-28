@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :set_post, only: %i[show edit update destroy add_comment]
   skip_before_action :require_login, only: %i[index]
+  skip_around_action :switch_locale, only: %i[add_comment]
 
   # GET /posts or /posts.json
   def index
@@ -10,7 +11,23 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1 or /posts/1.json
-  def show; end
+  def show; 
+    if request.format.js?
+      comment = Comment.create( { 'username'=>current_user.username, 'content'=>post_params[:comment] } )
+      @post.comments = "#{comment.id} #{(@post.comments.nil?) ? '' : @post.comments}"
+    end
+
+    respond_to do |format|
+      if @post.save
+        format.html
+        format.js
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+    
+  end
 
   # GET /posts/new
   def new
@@ -72,6 +89,21 @@ class PostsController < ApplicationController
     redirect_to posts_url
   end
 
+  def add_comment
+    comment = Comment.create( { 'username'=>current_user.username, 'content'=>params[:comments] } )
+    @post.comments = "#{comment.id} #{(@post.comments.nil?) ? '' : @post.comments}" 
+
+    respond_to do |format|
+      if @post.save
+        format.html
+        format.js { render :js => "alert();" }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -81,7 +113,7 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :text, :avatar)
+    params.require(:post).permit(:title, :text, :avatar, :comment)
   end
 
   def protection

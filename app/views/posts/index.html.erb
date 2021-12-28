@@ -13,13 +13,22 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </head>
 <body>
+
+  <main>
+  <header class="p-3 bg-dark text-white" >
     <div class="container">
-      <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center border-bottom">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li>
+
             <div class="col-4 pt-1">
-              <ul class="nav col-12 col-lg-auto mb-2 mb-mb-0">
+              <ul class="nav col-12 col-lg-auto mb-2 mb-mb-0 text-white">
                 <li>
-                  <%= link_to '#', class: "nav-link px-2 dropdown-toggle text-black", data: {"bs-toggle": "dropdown"} do %>
+                  <%= link_to '#', class: "nav-link px-2 dropdown-toggle text-white", data: {"bs-toggle": "dropdown"} do %>
                     <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
                     <%= t I18n.locale %>
                   <% end %>
@@ -37,67 +46,77 @@
 
                 </li>
               </ul>
-              
             </div>
-            <div class="col-4">
-              <h4 class="blog-header-logo text-dark" href="#"><%= t 'posts.index.hello' %></h4>
-            </div>
-            <% if signed_in? %>
-              <div class="col-2 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href=<%=session_update_path%>><%= current_user.username%></a>
-                |
-                <a class="btn btn-sm btn-outline-secondary" href=<%=session_logout_path%>><%= t 'posts.index.logout' %></a>
-              </div>
-            <% else %>
-              <div class="col-2 d-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-secondary" href="<%=session_login_path%>"><%= t 'posts.index.login' %></a>
-              </div>
-            <% end %>
 
+          </li>
+        </ul>
+
+        <div class="col-5">
+          <h4 class="blog-header-logo text-white" href="#"><%= t 'posts.index.hello' %></h4>
         </div>
-      </header>
-    </div>
-    
-    <main role="main">
 
-      <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            <% @posts.each do |post| %>
-              <div class="col-md-4">
-                <div class="card mb-4 box-shadow">
-                  <% if post.avatar.attached? %>                          
-                    <img class="card-img-top" src="<%= url_for(post.avatar) %>">
-                  <% end %>
-                  
-                  <div class="card-body">
-                    <h3 class="mb-0">
-                      <%= post.title %>
-                    </h3>
-                    <p class="card-text"><%= post.text[0..140] %>...</p>
-                    <div class="d-flex justify-content-between align-items-center">
-
-                      <div class="btn-group">
-                        <%= button_to t('posts.index.open'), post, :method=>:get, :type=>"button", :class=>"btn btn-sm btn-outline-secondary" %>
-                      </div>
-              
-                      <small class="text-muted"><%= post.created_at.strftime("%d-%m-%Y") %></small>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div class="text-end">
+          <% if signed_in? %>
+              <a class="btn btn-outline-light me-2"  href=<%=session_update_path%>><%= current_user.username%></a>
+              <a class="btn btn-warning" href=<%=session_logout_path%>><%= t 'posts.index.logout' %></a>
+            <% else %>
+              <a class="btn btn-warning" href=<%=session_login_path%>><%= t 'posts.index.login' %></a>
             <% end %>
         </div>
       </div>
+    </div>
+  </header>
+  </main>
+  <div class="b-example-divider"><hr class="col-xs-12"></div>
 
-    </main>
+  <div class="container">
+    <div class="row mb-2">
+
+    <% @posts.each do |post| %>
+
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <h3 class="mb-0"><%= post.title %></h3>
+            <div class="mb-1 text-muted"><%= post.created_at.strftime("%d-%m-%Y") %></div>
+            <p class="card-text mb-auto"><%= post.text[0..140] %></p>
+            <%= link_to t('posts.index.open'), post, :method=>:get %>
+          </div>
+          <% if post.avatar.attached? %>
+            <div class="col-auto d-none d-lg-block">                          
+              <img class="card-img-top" src="<%= url_for(post.avatar) %>">
+            </div>
+          <% end %>
+          
+        </div>
+      </div>
+
+    <% end %>
+      
+    </div>
+  </div>
 
     
   <div style="position:fixed;bottom:5px;right:5px;margin:0;padding:5px 3px;">
     <% if signed_in? %>
-      <%= link_to '+', new_post_path, :class=>"btn btn-primary", :role=>"button", :style=> 'color:#FFFFFF;' %>
+      <%= link_to t('posts.index.create'), new_post_path, :class=>"btn btn-primary", :role=>"button", :style=> 'color:#FFFFFF;' %>
     <% end %>
+  </div>
+
+
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+      <div class="col-md-4 d-flex align-items-center">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+          <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+        </a>
+        <span class="text-muted">&copy; 2021 Company, Inc</span>
+      </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+      </ul>
+    </footer>
   </div>
     
     

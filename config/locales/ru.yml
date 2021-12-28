@@ -1,6 +1,6 @@
 ru:
   en: "Английский"
-  ru: "Православный"
+  ru: "Русский"
   posts:
     edit:
       edit_post: "Редактировать Пост"
@@ -16,6 +16,7 @@ ru:
       logout: "Выйти"
       login: "Войти"
       open: "Открыть"
+      create: "Создать Пост"
     new:
       create_post: "Создать Пост"
       to_home: "На Главную"
@@ -28,15 +29,18 @@ ru:
       login: "Войти"
       edit: "Редактировать"
       back: "Назад"
+      new_comment: "Новый Комментарий"
   session:
     login:
-      hello: "Сап Двач!"
-      login: "Войти"
+      hello: "Пожалуйста, авторизуйтесь"
+      login: "Логин"
+      registrate: "Зарегистрироваться"
       secure: "Мы никому ничего не расскажем"
       password: "Пароль"
-      submit: "Отправить"
+      submit: "Войти"
+      remember_me: "Запомнить меня"
     registrate:
-      hello: "Сап Двач!"
+      hello: "Пожалуйста, зарегистрируйтесь"
       login: "Войти"
       password: "Пароль"
       password_confirm: "Подтверждение Пароля"

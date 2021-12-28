@@ -16,6 +16,7 @@ en:
       logout: "Logout"
       login: "Login"
       open: "Open"
+      create: "Create Post"
     new:
       create_post: "Create Post"
       to_home: "Home"
@@ -28,15 +29,18 @@ en:
       login: "Login"
       edit: "Edit"
       back: "Back"
+      new_comment: "New Comment"
   session:
     login:
-      hello: "Sap Dvach!"
+      hello: "Please sign in"
       login: "Login"
+      registrate: "Registrate"
       secure: "We'll never share your login with anyone else."
       password: "Password"
-      submit: "Submit"
+      submit: "Sign in"
+      remember_me: "Remember me"
     registrate:
-      hello: "Sap Dvach!"
+      hello: "Please registrate"
       login: "Login"
       password: "Password"
       password_confirm: "Password Confirm"
