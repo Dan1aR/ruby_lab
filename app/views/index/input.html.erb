@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Главная страница</title>
+<meta name='viewport' content='width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no'/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h4 class="my-0 mr-md-auto font-weight-normal">Андреев Данил ИУ6-33Б</h4>
+        <div align="right"><%= link_to 'Выйти', session_logout_path %></div>
+    </div>
+
+    <div class="container">
+        <p class="fs-6">Дано натуральное число n и целые числа a1, a2, . . . an. 
+        Написать программу, определяющую, есть ли среди заданной последовательности чисел отрезки
+        (непрерывные подпоследовательности), состоящие из совершенных чисел. 
+        Если есть, то подсчитать их количество и определить самый длинный из отрезков. 
+        Вывести на печать все отрезки, самый длинный из них и количество искомых отрезков. 
+        Если таких отрезков нет, то соответствующее сообщение. 
+        При составлении программы использовать функции. 
+        (Совершенным числом называется целое число, которое равно сумме своих сомножителей, кроме его самого).
+        </p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <form action="<%= index_output_url %>">
+                    <div class="mb-3">
+                        <input name="a" required="required" class="form-control">
+                    </div>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div align="center"><%= link_to 'Update', session_update_path %></div>
+    
+</body>
+</html>
